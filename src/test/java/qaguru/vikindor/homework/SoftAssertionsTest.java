@@ -1,6 +1,7 @@
 package qaguru.vikindor.homework;
 
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,8 @@ public class SoftAssertionsTest {
         open("https://github.com/selenide");
         $$("ol.d-flex").first().$(byText("selenide")).click();
         $("#wiki-tab").click();
-        $(".markdown-body").$(byText("Soft assertions")).shouldBe(visible).click();
+        $("#wiki-pages-box input").val("Soft");
+        $("#wiki-pages-box ul").$(byText("SoftAssertions")).shouldBe(visible).click();
         $("#wiki-body").shouldBe(visible).shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
                 "class Tests {\n" +
                 "  @Test\n" +
@@ -34,6 +36,11 @@ public class SoftAssertionsTest {
                 "    $(\"#second\").should(visible).click();\n" +
                 "  }\n" +
                 "}"));
+    }
+
+    @AfterAll
+    static void terminateWebDriver() {
+        closeWebDriver();
     }
 
 }
