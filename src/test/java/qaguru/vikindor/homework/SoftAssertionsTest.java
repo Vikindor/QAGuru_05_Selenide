@@ -18,7 +18,7 @@ public class SoftAssertionsTest {
     }
 
     @Test
-    public void shouldFindJuintCodeInSelenideRepo() {
+    void shouldFindJuintCodeInSelenideRepo() {
         open("https://github.com/selenide");
         $$("ol.d-flex").first().$(byText("selenide")).click();
         $("#wiki-tab").click();
